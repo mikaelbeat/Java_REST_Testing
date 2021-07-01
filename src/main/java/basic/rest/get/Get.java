@@ -2,8 +2,9 @@ package basic.rest.get;
 
 
 import io.restassured.RestAssured;
-import io.restassured.RestAssured.*;
+import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.*;
+import static org.hamcrest.CoreMatchers.*;
 
 
 
@@ -20,9 +21,15 @@ public class Get {
 		when().
 			get("/api/users?page=2").
 		then().
-			assertThat().statusCode(200);
+			assertThat().statusCode(200).and().
+			contentType(ContentType.JSON).and().
+			body("data[0].id", equalTo(7)).
+			body("data[0].email", equalTo("michael.lawson@reqres.in"));
 		
 		System.out.println("Get test successful!");
 	}
+
+
+
 
 }
