@@ -1,4 +1,4 @@
-package basic.rest.get;
+package Rest_testing;
 
 
 import io.restassured.RestAssured;

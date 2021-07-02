@@ -1,4 +1,4 @@
-package basic.rest.get;
+package Rest_testing;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -16,7 +16,7 @@ public class Post {
 			
 			RestAssured.baseURI = "https://reqres.in/";
 			// String bearerToken = "abcdefg";
-			String data = "{\r\n"
+			String request_body = "{\r\n"
 					+ "    \"name\": \"morpheus\",\r\n"
 					+ "    \"job\": \"leader\"\r\n"
 					+ "}";
@@ -24,7 +24,7 @@ public class Post {
 			// given().param("key","12345").param("token", "ABCDEFG").
 				// header.("Authorization, "Bearer" + bearerToken). 
 			given().
-				body(data).
+				body(request_body).
 			when().
 				post("/api/users").
 			then().
