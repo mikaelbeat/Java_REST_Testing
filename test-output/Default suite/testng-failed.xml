@@ -3,11 +3,11 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="basic.rest.get.Verify_response">
+      <class name="Rest_testing.Extract_response">
         <methods>
-          <include name="Verify_response_body"/>
+          <include name="Get_response_json"/>
         </methods>
-      </class> <!-- basic.rest.get.Verify_response -->
+      </class> <!-- Rest_testing.Extract_response -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
