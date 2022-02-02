@@ -4,31 +4,36 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import org.testng.annotations.Test;
 
-
-
 public class Extract_response {
-	
+
 	@Test
 	public void Get_response_json() {
 		
 		RestAssured.baseURI = "https://reqres.in/";
-		// String bearerToken = "abcdefg";
-		String request_body = "{\r\n"
-				+ "    \"name\": \"morpheus\",\r\n"
-				+ "    \"job\": \"leader\"\r\n"
-				+ "}";
 		
-		// given().param("key","12345").param("token", "ABCDEFG").
-			// header.("Authorization, "Bearer" + bearerToken). 
+		String requestFileLocation = "src\\main\\java\\Rest_testing\\Post1.json";
+		String requestFileAsJson = null;
+		try {
+			requestFileAsJson = readFileAsString(requestFileLocation);
+		} catch (Exception e) {
+			System.out.println("ERROR: Cannot read the request file.");
+		}
+		
+		
+//		given().param("key","12345").param("token", "ABCDEFG").
+//			 header.("Authorization, "Bearer" + bearerToken). 
 		
 		Response response = given().
-				body(request_body).
+				body(requestFileAsJson).
 			when().
 				post("/api/users").
 			then().
@@ -46,5 +51,8 @@ public class Extract_response {
 		System.out.println("timestamp -> " + responseBody.get("createdAt"));
 	}
 
+	public static String readFileAsString(String file) throws Exception {
+		return new String(Files.readAllBytes(Paths.get(file)));
+	}
 
 }
